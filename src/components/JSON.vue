@@ -90,6 +90,9 @@
         </li>
       </ul>
       <p>Our #1 seller:</p>
+      <p>
+        {{ bookstores.topSellers[0] }}
+      </p>
     </section>
 
     <section class="lab-section">
@@ -103,6 +106,15 @@
     <section class="lab-section">
       <h2>Attribute, Class and Style Binding with <code>v-bind</code></h2>
       <p>Highlighting Specific Authors:</p>
+      <ul>
+        <li
+          v-for="author in modernAuthors"
+          :key="author.id"
+          :class="{ highlight: author.name === highlightedAuthor }"
+        >
+          {{ author.name }} ({{ author.birthYear }})
+        </li>
+      </ul>
     </section>
   </div>
 </template>
@@ -130,6 +142,8 @@ const orwell = computed(() => authors.find((author) => author.name === 'George O
 
 // Activity 5: Find author by ID
 const austen = computed(() => authors.find((author) => author.id === 1))
+
+const highlightedAuthor = ref('George Orwell')
 </script>
 
 <style scoped>
